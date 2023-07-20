@@ -39,7 +39,8 @@ guide_seq.each do |guide|
     fastq_files_with_barcode.each do |fastq, barcode|
         path = File.join(indir, fastq)
         outfile_path = File.join(outdir_guide, ("Barcode" + barcode.to_s))
-        puts "sbatch --mail-type=FAIL --mail-user=#{email} --mem=40000 -t 280 --wrap=\"pbaa cluster #{guide_path} #{path} #{outfile_path}\""
+        puts "Submitting barcode #{barcode.to_s}"
+        print `sbatch --mail-type=FAIL --mail-user=#{email} --mem=40000 -t 280 --wrap=\"pbaa cluster #{guide_path} #{path} #{outfile_path}\"`
     end
 
 end
