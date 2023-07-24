@@ -41,4 +41,16 @@ example command:
 ~$ ruby pbaa.rb <directory_of_fastq_files> <email>
 ```
 
-Results will be in the /pbaa_results directory in the input directory, separated by each guide sequence file in the /guide directory.
+Results will be in the `/pbaa_results` directory in the input directory, separated by each guide sequence file in the `/guide` directory.
+
+## pbaa_summary.rb
+
+After the PBAA process, summarize the sequence tags in the `passed_cluster_sequences.fasta` files as `csv` file.
+
+example command:
+
+```console
+~$ ruby pbaa_summary.rb <directory_of_fastq_files>
+```
+
+Summary `csv` files will found in the `/pbaa_results` directory.
