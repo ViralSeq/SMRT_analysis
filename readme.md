@@ -47,6 +47,8 @@ Results will be in the `/pbaa_results` directory in the input directory, separat
 
 After the PBAA process, summarize the sequence tags in the `passed_cluster_sequences.fasta` files as `csv` file.
 
+If a `csv` file of barcoding manifest exists in the target directory, it will try to abstract data from the `csv` file and annotate the barcoded sequences.
+
 example command:
 
 ```console
@@ -54,3 +56,5 @@ example command:
 ```
 
 Summary `csv` files will found in the `/pbaa_results` directory.
+
+Cleaned up barcoded sequence files in `fasta` format in the `/pbaa_results/*_output` folder.
