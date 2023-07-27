@@ -4,7 +4,7 @@
 # example:
 # ruby pbaa_summary.rb <directory_of_fastq_files>
 
-require 'CSV'
+require 'csv'
 
 def fasta_to_hash(infile)
   f=File.open(infile,"r")
