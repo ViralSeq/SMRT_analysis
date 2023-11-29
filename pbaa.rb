@@ -26,9 +26,10 @@ Dir.mkdir outdir unless File.directory? outdir
 fastq_files_with_barcode = {}
 
 fastq_files.each do |fastq|
-    fastq =~ /demux\.(\d+)\-/
-    barcode = $1.to_i
-    fastq_files_with_barcode[fastq] = barcode
+    fastq =~ /demux\.(\d+)\-\-(\d+)/
+    barcode1 = $1
+    barcode2 = $2
+    fastq_files_with_barcode[fastq] = [barcode1, barcode2]
 end
 
 guide_seq.each do |guide|
@@ -38,10 +39,9 @@ guide_seq.each do |guide|
     Dir.mkdir outdir_guide unless File.directory? outdir_guide
     fastq_files_with_barcode.each do |fastq, barcode|
         path = File.join(indir, fastq)
-        outfile_path = File.join(outdir_guide, ("Barcode" + barcode.to_s))
-        print "Barcode #{barcode.to_s}\t"
+        outfile_path = File.join(outdir_guide, ("Barcode" + barcode.join("--")))
+        print "Barcode #{barcode.join("--")}\t"
         print `sbatch --mail-type=FAIL --mail-user=#{email} --mem=40000 -t 280 --wrap=\"pbaa cluster #{guide_path} #{path} #{outfile_path}\"`
     end
 
 end
-
