@@ -97,6 +97,10 @@ ref_dir.each do |ref|
       end
       out.print "\n"
 
+      if !csv_hash[bar]
+        puts "Barcode #{bar} not exists in the .csv metadata file. This bacode is skipped."
+        next
+      end
       out_fasta_file.puts csv_hash[bar] + "\sGuide-" + $1.to_s +
       "\sCluster-" + $2.to_s + "\sReadCount-" + $3.to_s
       out_fasta_file.puts seqs[k]
